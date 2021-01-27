@@ -11,7 +11,7 @@
                 <p>{{error}}</p>
             </div>
             <div class="search__query">
-                <input mat-input formControlName="searchQuery" placeholder="Search for a track, album or artist" value={{service.text.trim()}} #reference>
+                <input mat-input formControlName="searchQuery" placeholder="Search for a track, album or artist" onfocus="this.value=''" value={{service.text.trim()}} #reference>
             </div>
             <div class="search__button">
                 <button mat-flat-button color="primary" type="submit" (click)="reference.value=''">Search Spotify</button>

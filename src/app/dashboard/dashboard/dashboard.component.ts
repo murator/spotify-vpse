@@ -20,9 +20,6 @@ export class DashboardComponent implements OnInit {
   constructor(private router: Router) {
     // TODO: handle refresh after token expired (10mins)
 
-    // SEE: http://dareid.github.io/chakram/example/spotify/
-    // SEE: https://medium.com/@amorenogo/spotify-app-with-angular-ac2a92fb8bff
-
     this.loginUri = this.authEndpoint
       + 'client_id=' + this.clientId
       + '&redirect_uri=' + this.redirectUri
@@ -30,7 +27,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.speakIntroduction();
 
     this.authorizationReturnUrl = this.router.url;
