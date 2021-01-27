@@ -1,0 +1,17 @@
+<div *ngIf="searchResults" class="search-results">
+    <div fxLayout="row wrap" fxLayoutGap="16px">
+        <mat-card class="spotify-card" fxFlex="25%" *ngFor="let result of searchResults.tracks.items">
+            <mat-card-header>
+                <mat-card-title>{{result.name}}</mat-card-title>
+                <mat-card-subtitle>{{result.album.name}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{result.album.images[0].url}}" alt="{{result.album.name}}-{{result.name}}">
+            <mat-card-content>
+                <p>Album: {{result.album.name}}, realesed: {{result.album.release_date}}</p>
+                <p>Track number: {{result.track_number}}</p>
+                <p>Duration: {{result.duration_ms/1000/60|number}} minutes</p>
+                <p>Explicit: {{result.explicit}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

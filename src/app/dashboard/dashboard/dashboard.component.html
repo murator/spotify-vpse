@@ -1,0 +1,14 @@
+<div class="dashboard">
+    <div class="authorize" *ngIf="!authorized">
+        <div>
+            <h2>Login to authorize Spotify</h2>
+        </div>
+        <div>
+            <a class="btn btn--loginApp-link" href='{{loginUri}}' alt="Login to Spotify">
+                <img src="/assets/spotify-icon-green.jpg" width="60">
+            </a>
+        </div>
+    </div>
+    <app-search-box *ngIf="authorized"></app-search-box>
+    <app-search-result *ngIf="authorized"></app-search-result>
+</div>

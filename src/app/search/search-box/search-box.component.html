@@ -1,0 +1,21 @@
+<div class="search">
+    <div class="controlls">
+        <button mat-flat-button color="accent" (click)="startService()">Start</button>
+    </div>
+    <div class="search-wrapper">
+        <form class="search__form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <div class="search__message" color="primary" *ngIf="searchForm.invalid && (searchForm.controls.searchQuery.dirty)">
+                <p>Please enter a track name, album or artist to search</p>
+            </div>
+            <div class="search__error" color="danger" *ngIf="error">
+                <p>{{error}}</p>
+            </div>
+            <div class="search__query">
+                <input mat-input formControlName="searchQuery" placeholder="Search for a track, album or artist" value={{service.text.trim()}} #reference>
+            </div>
+            <div class="search__button">
+                <button mat-flat-button color="primary" type="submit" (click)="reference.value=''">Search Spotify</button>
+            </div>
+        </form>
+    </div>
+</div>
