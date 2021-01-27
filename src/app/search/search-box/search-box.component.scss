@@ -14,9 +14,15 @@
     }
 }
 
-.search__button {
+.search__button,
+.search__type {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+}
+
+.searchType {
+    margin: 4px;
+    margin-top: 12px;
 }

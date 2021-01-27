@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subscription, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { SpotifyApiService } from 'src/app/services/spotify-api.service';
 import { VoiceRecognitionService } from 'src/app/services/voice-recognition.service';
 
@@ -14,22 +16,29 @@ export class SearchBoxComponent implements OnInit {
   searchForm: FormGroup;
   radioForm: FormGroup;
   error = '';
+  searchTypes = ['track', 'album', 'artist'];
+  searchParams = {
+    searchQuery: '',
+    searchType: ''
+  }
 
   searchTermSubscription: Subscription;
 
   constructor(
     public service: VoiceRecognitionService,
     private formBuilder: FormBuilder,
+    private router: Router,
     private spotifyApiService: SpotifyApiService) {
     this.defaultForm();
   }
 
   ngOnInit(): void {
     this.service.init();
+    this.defaultForm();
   }
 
   startService() {
-    this.resetForm();
+    this.updateForm();
     this.service.start();
   }
 
@@ -39,16 +48,12 @@ export class SearchBoxComponent implements OnInit {
   }
 
   defaultForm() {
-    const searchCtrl = new FormControl(
-      ' ',
-      [
-        Validators.required,
-        Validators.minLength(1),
-        Validators.maxLength(120)
-      ]);
+    const searchCtrl = new FormControl('', Validators.required);
+    const searchType = new FormControl(this.searchTypes[0], Validators.required);
 
     this.searchForm = this.formBuilder.group({
-      searchQuery: searchCtrl
+      searchQuery: searchCtrl,
+      searchType: searchType
     });
   }
 
@@ -60,20 +65,45 @@ export class SearchBoxComponent implements OnInit {
     this.searchForm.reset({});
   }
 
+  updateForm() {
+    this.searchParams = {
+      searchQuery: this.service.text,
+      searchType: this.searchForm.value.searchType
+    }
+  }
+
   onSubmit() {
     this.disabled = true;
 
-    let searchQuery = '';
     if (this.service.text.length > 0) {
-      searchQuery = this.service.text;
+      this.searchParams = {
+        searchQuery: this.service.text,
+        searchType: this.searchForm.value.searchType
+      }
     } else {
-      searchQuery = this.searchForm.value.searchQuery;
+      this.searchParams = {
+        searchQuery: this.searchForm.value.searchQuery,
+        searchType: this.searchForm.value.searchType
+      }
     }
 
-    this.spotifyApiService.searchSpotifyApi(searchQuery).subscribe((result: any) => {
-      this.disabled = false;
-    }, () => {
-      this.disabled = false;
-    });
+    this.spotifyApiService.searchSpotifyApi(this.searchParams)
+      .pipe(
+        catchError(err => {
+          return throwError(err);
+        })
+      )
+      .subscribe(
+        res => { },
+        err => {
+          if (err.status === 401) {
+            localStorage.removeItem('token');
+            this.router.navigate(['.'])
+          }
+          if (err.status === 400) {
+          }
+        },
+        () => this.disabled = false
+      );
   }
 }

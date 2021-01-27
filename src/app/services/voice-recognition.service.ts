@@ -38,7 +38,7 @@ export class VoiceRecognitionService {
         this.recognition.stop();
       } else {
         this.wordConcat()
-        this.currentSearchTermSubject.next(this.text);
+        this.currentSearchTermSubject.next({ searchQuery: this.text, searchType: 'track' });
         this.recognition.stop();
       }
     });
