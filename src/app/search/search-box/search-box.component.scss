@@ -8,19 +8,19 @@
 .search__query {
     margin: 12px;
     input {
+        font-size: 18px;
         min-width: 320px;
         min-height: 42px;
         background-color: transparent;
-        padding: 6px;
+        outline: 0;
+        border-width: 0 0 4px;
+        padding: 2px;
         padding-left: 6px;
-        box-shadow: 0 2px 4px #69f0ae;
         align-items: center;
         justify-content: flex-end;
         display: inline-flex;
-        border-radius: 12px;
-        border: 0 solid transparent;
         position: relative;
-        background-color: #69f0ae;
+        border-color: #69f0ae;
     }
 }
 
