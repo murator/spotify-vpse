@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
+import { SearchType } from 'src/app/models/search.interfaces';
 import { TracksRoot } from 'src/app/models/spotify.interfaces';
 import { SpotifyApiService } from 'src/app/services/spotify-api.service';
 
@@ -10,11 +11,11 @@ import { SpotifyApiService } from 'src/app/services/spotify-api.service';
 })
 export class SearchResultComponent implements OnInit {
   searchResultsSubscription: Subscription;
-  searchResults: TracksRoot;
+  searchResults: SearchType;
 
   constructor(private spotifyApiService: SpotifyApiService) {
     this.searchResultsSubscription =
-      this.spotifyApiService.currentSearchDataSubject.subscribe((data: TracksRoot) => {
+      this.spotifyApiService.currentSearchDataSubject.subscribe((data: SearchType) => {
         this.searchResults = data;
       });
   }

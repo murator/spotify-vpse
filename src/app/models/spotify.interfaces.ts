@@ -57,25 +57,25 @@ export interface Item {
   uri: string;
 }
 
-export interface Tracks {
-  href: string;
+export interface SpotifyApiResponse {
+  href?: string;
   items: Item[];
-  limit: number;
-  next: string;
-  offset: number;
+  limit?: number;
+  next?: string;
+  offset?: number;
   previous?: any;
-  total: number;
+  total?: number;
 }
 
 export interface TracksRoot {
-  tracks: Tracks;
+  tracks: SpotifyApiResponse;
 }
 
 export interface AlbumsRoot {
-  album: Album;
+  albums: SpotifyApiResponse;
 }
 
 export interface ArtistsRoot {
-  artist: Artist;
+  artists: SpotifyApiResponse;
 }
 

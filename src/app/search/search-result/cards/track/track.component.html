@@ -1,0 +1,12 @@
+<mat-card class="spotify-card" *ngFor="let result of searchResults.tracks.items">
+    <mat-card-header>
+        <mat-card-title>{{result.name}}</mat-card-title>
+        <mat-card-subtitle>{{result.album.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{result.album.images[0].url}}" alt="{{result.album.name}}-{{result.name}}">
+    <mat-card-content>
+        <p>Album: {{result.album.name}}<br>realesed: {{result.album.release_date}}<br> Track number: {{result.track_number}}
+            <br> Duration: {{result.duration_ms/1000/60|number}} minutes<br> Explicit: {{result.explicit}}
+            <br>
+    </mat-card-content>
+</mat-card>

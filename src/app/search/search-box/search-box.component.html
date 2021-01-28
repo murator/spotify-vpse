@@ -12,16 +12,16 @@
             </div>
             <div class="search__type">
                 <mat-radio-group aria-label="Select an option" formControlName="searchType">
-                    <mat-radio-button name="searchType" [value]="searchTypes[0]" class="searchType">Track</mat-radio-button>
-                    <mat-radio-button name="searchType" [value]="searchTypes[1]" class="searchType">Album</mat-radio-button>
-                    <mat-radio-button name="searchType" [value]="searchTypes[2]" class="searchType">Artist</mat-radio-button>
+                    <mat-radio-button [value]="searchTypes[0]" class="searchType">Track</mat-radio-button>
+                    <mat-radio-button [value]="searchTypes[1]" class="searchType">Album</mat-radio-button>
+                    <mat-radio-button [value]="searchTypes[2]" class="searchType">Artist</mat-radio-button>
                 </mat-radio-group>
             </div>
             <div class="search__query">
                 <input mat-input formControlName="searchQuery" placeholder="Search for a track, album or artist" onfocus="this.value=''" value={{service.text.trim()}} #reference>
             </div>
             <div class="search__button">
-                <button mat-flat-button color="primary" type="submit" (click)="reference.value=''">Search Spotify</button>
+                <button mat-flat-button color="primary" type="submit">Search Spotify</button>
             </div>
         </form>
     </div>

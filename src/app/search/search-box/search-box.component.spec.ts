@@ -1,5 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SearchBoxComponent } from './search-box.component';
 
@@ -11,9 +13,12 @@ describe('SearchBoxComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterTestingModule,
+        HttpClientModule
       ],
-      declarations: [SearchBoxComponent]
+      declarations: [SearchBoxComponent],
+      providers: []
     })
       .compileComponents();
   });

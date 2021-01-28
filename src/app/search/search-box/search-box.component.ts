@@ -20,7 +20,7 @@ export class SearchBoxComponent implements OnInit {
   searchParams = {
     searchQuery: '',
     searchType: ''
-  }
+  };
 
   searchTermSubscription: Subscription;
 
@@ -37,42 +37,43 @@ export class SearchBoxComponent implements OnInit {
     this.defaultForm();
   }
 
-  startService() {
+  startService(): void {
     this.updateForm();
     this.service.start();
   }
 
-  stopService() {
+  stopService(): void {
     this.service.stop();
     this.defaultForm();
   }
 
-  defaultForm() {
+  defaultForm(): void {
     const searchCtrl = new FormControl('', Validators.required);
     const searchType = new FormControl(this.searchTypes[0], Validators.required);
 
     this.searchForm = this.formBuilder.group({
       searchQuery: searchCtrl,
-      searchType: searchType
+      searchType
     });
   }
 
-  clearSearch() {
+  clearSearch(): void {
     this.searchForm.controls.searchQuery.setValue('');
+    this.searchForm.controls.searchType.setValue(this.searchTypes[0]);
   }
 
-  resetForm() {
+  resetForm(): void {
     this.searchForm.reset({});
   }
 
-  updateForm() {
+  updateForm(): void {
     this.searchParams = {
       searchQuery: this.service.text,
       searchType: this.searchForm.value.searchType
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.disabled = true;
 
     if (this.service.text.length > 0) {
@@ -98,7 +99,7 @@ export class SearchBoxComponent implements OnInit {
         err => {
           if (err.status === 401) {
             localStorage.removeItem('token');
-            this.router.navigate(['.'])
+            this.router.navigate(['.']);
           }
           if (err.status === 400) {
           }

@@ -1,0 +1,11 @@
+<mat-card class="spotify-card" *ngFor="let result of searchResults.artists.items">
+    <mat-card-header>
+        <mat-card-title>{{result.name}}</mat-card-title>
+        <mat-card-subtitle>{{result.type}}</mat-card-subtitle>
+    </mat-card-header>
+    <img *ngIf="result.images[0]" mat-card-image src="{{result.images[0].url}}" alt="{{result.name}}">
+    <mat-card-content>
+        <p>Artist: {{result.name}}, popularity: {{result.popularity}}<br> Followers: {{result.followers.total}}<br> Popularity: {{result.popularity}}</p>
+        <span *ngIf="result.genres[0]">Genres: {{result.genres[0]}}, {{result.genres[1]}}, {{result.genres[2]}}</span>
+    </mat-card-content>
+</mat-card>
