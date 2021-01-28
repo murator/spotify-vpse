@@ -6,11 +6,21 @@
 }
 
 .search__query {
-    margin: 24px;
+    margin: 12px;
     input {
-        width: 60%;
         min-width: 320px;
         min-height: 42px;
+        background-color: transparent;
+        padding: 6px;
+        padding-left: 6px;
+        box-shadow: 0 2px 4px #69f0ae;
+        align-items: center;
+        justify-content: flex-end;
+        display: inline-flex;
+        border-radius: 12px;
+        border: 0 solid transparent;
+        position: relative;
+        background-color: #69f0ae;
     }
 }
 
@@ -20,9 +30,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin: 18px;
+    .searchType {
+        margin-left: 24px;
+    }
 }
 
-.searchType {
-    margin: 4px;
-    margin-top: 12px;
+::placeholder {
+    color: black;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: black;
+}
+
+::-ms-input-placeholder {
+    color: black;
 }

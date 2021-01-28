@@ -1,11 +1,14 @@
 .search-results {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
-    flex-basis: 100%;
-    margin-top: 24px;
+    justify-content: center;
+    align-items: auto;
+    align-content: start;
 }
 
 .spotify-card {
-    width: 200px;
-    margin: 12px;
+    flex: 0 0 auto;
+    width: 220px;
+    margin: 14px;
 }

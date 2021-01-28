@@ -1,47 +1,45 @@
-<div *ngIf="searchResults" class="search-results">
-    <div fxLayout="row wrap" fxLayoutGap="16px">
-        <div *ngIf="searchResults.tracks">
-            <mat-card class="spotify-card" fxFlex="25%" *ngFor="let result of searchResults.tracks.items">
-                <mat-card-header>
-                    <mat-card-title>{{result.name}}</mat-card-title>
-                    <mat-card-subtitle>{{result.album.name}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="{{result.album.images[0].url}}" alt="{{result.album.name}}-{{result.name}}">
-                <mat-card-content>
-                    <p>Album: {{result.album.name}}, realesed: {{result.album.release_date}}</p>
-                    <p>Track number: {{result.track_number}}</p>
-                    <p>Duration: {{result.duration_ms/1000/60|number}} minutes</p>
-                    <p>Explicit: {{result.explicit}}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div *ngIf="searchResults.albums">
-            <mat-card class="spotify-card" fxFlex="25%" *ngFor="let result of searchResults.albums.items">
-                <mat-card-header>
-                    <mat-card-title>{{result.name}}</mat-card-title>
-                    <mat-card-subtitle *ngIf="result.artists[0]">{{result.artists[0].name}}</mat-card-subtitle>
-                </mat-card-header>
-                <img *ngIf="result.images[0]" mat-card-image src="{{result.images[0].url}}" alt="{{result.name}}">
-                <mat-card-content>
-                    <p>Album type: {{result.album_type}}, realesed: {{result.release_date}}</p>
-                    <p>Total tracks: {{result.total_tracks}}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div *ngIf="searchResults.artists">
-            <mat-card class="spotify-card" fxFlex="25%" *ngFor="let result of searchResults.artists.items">
-                <mat-card-header>
-                    <mat-card-title>{{result.name}}</mat-card-title>
-                    <mat-card-subtitle>{{result.type}}</mat-card-subtitle>
-                </mat-card-header>
-                <img *ngIf="result.images[0]" mat-card-image src="{{result.images[0].url}}" alt="{{result.name}}">
-                <mat-card-content>
-                    <p>Artist: {{result.name}}, popularity: {{result.popularity}}</p>
-                    <p>Followers: {{result.followers.total}}</p>
-                    <p *ngIf="result.genres[0]">Genres: {{result.genres[0]}}, {{result.genres[1]}}, {{result.genres[2]}}</p>
-                    <p>Popularity: {{result.popularity}}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
+<div *ngIf="searchResults">
+    <div *ngIf="searchResults.tracks" class="search-results">
+        <mat-card class="spotify-card" *ngFor="let result of searchResults.tracks.items">
+            <mat-card-header>
+                <mat-card-title>{{result.name}}</mat-card-title>
+                <mat-card-subtitle>{{result.album.name}}</mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{result.album.images[0].url}}" alt="{{result.album.name}}-{{result.name}}">
+            <mat-card-content>
+                <p>Album: {{result.album.name}}, realesed: {{result.album.release_date}}</p>
+                <p>Track number: {{result.track_number}}</p>
+                <p>Duration: {{result.duration_ms/1000/60|number}} minutes</p>
+                <p>Explicit: {{result.explicit}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div *ngIf="searchResults.albums" class="search-results">
+        <mat-card class="spotify-card" *ngFor="let result of searchResults.albums.items">
+            <mat-card-header>
+                <mat-card-title>{{result.name}}</mat-card-title>
+                <mat-card-subtitle *ngIf="result.artists[0]">{{result.artists[0].name}}</mat-card-subtitle>
+            </mat-card-header>
+            <img *ngIf="result.images[0]" mat-card-image src="{{result.images[0].url}}" alt="{{result.name}}">
+            <mat-card-content>
+                <p>Album type: {{result.album_type}}, realesed: {{result.release_date}}</p>
+                <p>Total tracks: {{result.total_tracks}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div *ngIf="searchResults.artists" class="search-results">
+        <mat-card class="spotify-card" *ngFor="let result of searchResults.artists.items">
+            <mat-card-header>
+                <mat-card-title>{{result.name}}</mat-card-title>
+                <mat-card-subtitle>{{result.type}}</mat-card-subtitle>
+            </mat-card-header>
+            <img *ngIf="result.images[0]" mat-card-image src="{{result.images[0].url}}" alt="{{result.name}}">
+            <mat-card-content>
+                <p>Artist: {{result.name}}, popularity: {{result.popularity}}</p>
+                <p>Followers: {{result.followers.total}}</p>
+                <p *ngIf="result.genres[0]">Genres: {{result.genres[0]}}, {{result.genres[1]}}, {{result.genres[2]}}</p>
+                <p>Popularity: {{result.popularity}}</p>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>
